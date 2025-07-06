@@ -10,6 +10,7 @@ load_dotenv()
 url = "https://api.themoviedb.org/3/"
 ACCESS_TOKEN = os.getenv("ACCESS_TOKEN")
 headers = {"accept": "application/json", "Authorization": f"Bearer {ACCESS_TOKEN}"}
+time_delay = 0.5
 
 
 def get_out_put_url(param, url=url):
@@ -37,7 +38,7 @@ def discover_movie(discover_movie_path: str, start_page: int, end_page: int):
             for movie in data:
                 movie_id_list.append(movie["id"])
 
-        sleep(3)
+        sleep(time_delay)
     return movie_id_list
 
 
@@ -50,7 +51,7 @@ def movie_details(movie_details_path: str, movie_id_list: List):
         data = get_out_put_url(url)
         if data:
             movie_details_list.append(data)
-        sleep(3)
+        sleep(time_delay)
     return movie_details_list
 
 
@@ -63,7 +64,7 @@ def movie_credits(movie_credits_path: str, movie_id_list: List):
         data = get_out_put_url(url)
         if data:
             movie_credits_list.append(data)
-        sleep(3)
+        sleep(time_delay)
     return movie_credits_list
 
 
@@ -76,7 +77,7 @@ def movie_watch_providers(movie_watch_providers_path: str, movie_id_list: List):
         data = get_out_put_url(url)
         if data:
             movie_watch_providers_list.append(data)
-        sleep(3)
+        sleep(time_delay)
     return movie_watch_providers_list
 
 
@@ -89,7 +90,7 @@ def movie_reviews(movie_reviews_path: str, movie_id_list: List):
         data = get_out_put_url(url)
         if data:
             movie_reviews_list.append(data)
-        sleep(3)
+        sleep(time_delay)
     return movie_reviews_list
 
 
@@ -102,7 +103,7 @@ def movie_keywords(movie_keywords_path: str, movie_id_list: List):
         data = get_out_put_url(url)
         if data:
             movie_keywords_list.append(data)
-        sleep(3)
+        sleep(time_delay)
     return movie_keywords_list
 
 
@@ -115,7 +116,7 @@ def movie_trailer_videos(movie_trailer_videos_path: str, movie_id_list: List):
         data = get_out_put_url(url)
         if data:
             movie_trailer_videos_list.append(data)
-        sleep(3)
+        sleep(time_delay)
     return movie_trailer_videos_list
 
 
@@ -128,7 +129,7 @@ def movie_people_details(movie_people_details_path: str, movie_id_list: List):
         data = get_out_put_url(url)
         if data:
             movie_people_details_list.append(data)
-        sleep(3)
+        sleep(time_delay)
     return movie_people_details_list
 
 
@@ -140,5 +141,5 @@ movie_reviews_path = "movie/movie_id/reviews?language=en-US&page=1"
 movie_keywords_path = "movie/movie_id/keywords"
 movie_trailer_videos_path = "movie/movie_id/videos?language=en-US"
 movie_people_details_path = "person/person_id?language=en-US"
-movie_id_list = discover_movie(discover_movie_path, 1, 2)
-print(movie_credits(movie_credits_path, movie_id_list))
+movie_id_list = discover_movie(discover_movie_path, 1, 10)
+print(movie_id_list)
