@@ -80,7 +80,7 @@ def movie_watch_providers(movie_watch_providers_path: str, movie_id_list: List):
         sleep(time_delay)
     return movie_watch_providers_list
 
-
+# có số trang review với tham số page
 def movie_reviews(movie_reviews_path: str, movie_id_list: List):
     movie_reviews_list = []
     url_movie_reviews_list = [
